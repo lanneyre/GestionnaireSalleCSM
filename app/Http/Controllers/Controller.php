@@ -53,9 +53,4 @@ class Controller extends BaseController
             DB::update($requestUpdate, ["id" => $plan[0]->id, "id_salle" => $salle]);
         }
     }
-
-    function demo(Groupe $groupe)
-    {
-        var_dump($groupe->nom);
-    }
 }

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +15,5 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get("/savePlanning", [Controller::class, 'savePlanning']);
+Route::get("savePlanning", [Controller::class, 'savePlanning']);
 Route::get('/', [Controller::class, 'welcome']);
-
-
-Route::get("/groupe/{groupe}", [Controller::class, 'demo']);

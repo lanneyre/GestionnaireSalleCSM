@@ -20,7 +20,7 @@ class CreatePlanningsTable extends Migration
             $table->bigInteger('id_groupe')->unsigned();
             $table->bigInteger('id_salle')->unsigned()->nullable();
             $table->foreign('id_groupe')->references('id')->on('groupes');
-            $table->foreign('id_salle')->references('id')->on('groupes');
+            $table->foreign('id_salle')->references('id')->on('salles');
         });
     }
 

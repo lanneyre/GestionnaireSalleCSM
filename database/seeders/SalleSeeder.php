@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Salle;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Hash;
@@ -18,15 +19,32 @@ class SalleSeeder extends Seeder
     public function run()
     {
         //
-        for ($i = 0; $i < 10; $i++) {
-            DB::table('salles')->insert([
-                'numArchi' => Str::random(5),
-                'numOfficiel' => Str::random(3),
-                'nom' => Str::random(\rand(8, 12)),
-                'superficie' => \rand(20, 80),
-                'nbMaxApprenants' => \rand(10, 30),
-                'etage' => \rand(3, 6)
-            ]);
-        }
+        Salle::create([
+            'numArchi' => "Ent",
+            'numOfficiel' => "Ent",
+            'nom' => "Entreprise",
+            'superficie' => 0,
+            'nbMaxApprenants' => 0,
+            'etage' => 0
+        ]);
+        Salle::create([
+            'numArchi' => "Vac",
+            'numOfficiel' => "Vac",
+            'nom' => "Vacance",
+            'superficie' => 0,
+            'nbMaxApprenants' => 0,
+            'etage' => 0
+        ]);
+
+        // for ($i = 0; $i < 10; $i++) {
+        //     Salle::create([
+        //         'numArchi' => Str::random(5),
+        //         'numOfficiel' => Str::random(3),
+        //         'nom' => Str::random(\rand(8, 12)),
+        //         'superficie' => \rand(20, 80),
+        //         'nbMaxApprenants' => \rand(10, 30),
+        //         'etage' => \rand(3, 6)
+        //     ]);
+        // }
     }
 }

@@ -62,7 +62,10 @@
                                             @endphp
                                             <option value="{{ $salle->id }}"
                                                 @if (isset($planning[$date][$groupe->id]) && $planning[$date][$groupe->id] == $salle->id) selected @endif>
-                                                {{ $salle->numOfficiel }}</option>
+                                                {{ $salle->numOfficiel }}@if ($salle->nbMaxApprenants > 0)
+                                                    - {{ $salle->nbMaxApprenants }}
+                                                @endif
+                                            </option>
                                         @endforeach
                                     </select>
                                 @else

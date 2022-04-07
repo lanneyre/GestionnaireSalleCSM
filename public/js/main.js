@@ -11,8 +11,6 @@ document.querySelector("#yearActual").addEventListener("change", (e) => {
     document.querySelector("#year").value = y.value;
     document.querySelector('#changemonth').submit();
 });
-
-
 document.querySelector("#yearMinus").addEventListener("click", () => {
     document.querySelector("#month").value = document.querySelector("#oldmonth").innerHTML;
     document.querySelector("#year").value = parseInt(document.querySelector("#oldyear").innerHTML) - 1;
@@ -50,13 +48,6 @@ document.querySelector("#monthPlus").addEventListener("click", () => {
 });
 
 const findDuplicates = (arr) => {
-    // let sorted_arr = arr.slice().sort();
-    // let results = [];
-    // for (let i = 0; i < sorted_arr.length - 1; i++) {
-    //     if (document.getElementById(sorted_arr[i + 1]).value == document.getElementById(sorted_arr[i]).value && !results.includes(document.getElementById(sorted_arr[i]).value)) {
-    //         results.push(sorted_arr[i]);
-    //     }
-    // }
     let results = [];
     let ignore = [];
     for (let i = 0; i < arr.length - 1; i++) {
@@ -82,6 +73,14 @@ const getSalles = (date) => {
     let doublons = []
     noeud.forEach(element => {
         element.classList.remove("duplicate");
+        element.classList.remove("entreprise");
+        element.classList.remove("vacance");
+        if (element.value == "1") {
+            element.classList.add("entreprise");
+        }
+        if (element.value == "2") {
+            element.classList.add("vacance");
+        }
         if (element.value != "null") doublons.push(element);
     });
     return doublons;
@@ -102,7 +101,11 @@ let checkSalles = () => {
             if (duplicateSalles.length > 0) {
                 duplicateSalles.forEach((input) => {
                     //console.log(input);
-                    document.getElementById(input).classList.add("duplicate")
+                    let champ = document.getElementById(input).classList;
+                    if (!champ.contains("entreprise") && !champ.contains("vacance")) {
+                        champ.add("duplicate");
+                    }
+
                 });
             }
         }

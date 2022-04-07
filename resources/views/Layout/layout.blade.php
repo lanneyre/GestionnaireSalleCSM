@@ -47,6 +47,17 @@
 
         .duplicate {
             background-color: red;
+            color: white;
+        }
+
+        .entreprise {
+            background-color: darkblue !important;
+            color: white;
+        }
+
+        .vacance {
+            background-color: purple !important;
+            color: white;
         }
 
         .hidden {
