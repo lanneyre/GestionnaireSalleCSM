@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SalleController;
+use App\Http\Controllers\GroupeController;
 use App\Models\User;
 
 /*
@@ -14,6 +16,9 @@ use App\Models\User;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('salle', SalleController::class);
+Route::resource('groupe', GroupeController::class);
 
 Route::get("savePlanning", [Controller::class, 'savePlanning']);
 Route::get('/', [Controller::class, 'welcome']);

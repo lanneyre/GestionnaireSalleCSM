@@ -18,6 +18,7 @@ class CreateOptionsTable extends Migration
             $table->timestamps();
             $table->text("nom");
             $table->text("description");
+            $table->softDeletes();
         });
     }
 

@@ -22,6 +22,7 @@ class CreateSallesTable extends Migration
             $table->integer("superficie");
             $table->integer("nbMaxApprenants");
             $table->integer('etage');
+            $table->softDeletes();
         });
     }
 

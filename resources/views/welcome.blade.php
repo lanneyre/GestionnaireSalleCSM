@@ -87,3 +87,8 @@
         <input type="hidden" name="year" id="year" value="">
     </form>
 @endsection
+@section('script')
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+        < script src = "js/main.js" >
+    </script>
+@endsection

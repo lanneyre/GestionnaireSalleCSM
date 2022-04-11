@@ -18,6 +18,7 @@ class CreateGroupesTable extends Migration
             $table->timestamps();
             $table->text("nom");
             $table->integer("effectif");
+            $table->softDeletes();
         });
     }
 
