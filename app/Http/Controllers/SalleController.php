@@ -38,13 +38,16 @@ class SalleController extends Controller
     {
         //
         $validated = $request->validate([
-            'nom' => 'required|max:255',
             'numOfficiel' => 'required|unique:salles|max:255',
             'superficie' => 'required|integer',
             'nbMaxApprenants' => 'required|integer',
             'etage' => 'required|integer',
+            'nom' => 'max:255',
             'numArchi' => ''
         ]);
+        if (empty($validated['nom'])) {
+            $validated['nom'] = $validated['numOfficiel'];
+        }
         $validated['numArchi'] = $validated['numOfficiel'];
         if (Salle::create($validated)) {
             return redirect()->back()->withSuccess('Insertion ok');
@@ -85,12 +88,15 @@ class SalleController extends Controller
     {
         //
         $validated = $request->validate([
-            'nom' => 'required|max:255',
-            'numOfficiel' => 'required|unique:salles|max:255',
+            'nom' => 'max:255',
+            'numOfficiel' => 'required|max:255',
             'superficie' => 'required|integer',
             'nbMaxApprenants' => 'required|integer',
             'etage' => 'required|integer'
         ]);
+        if (empty($validated['nom'])) {
+            $validated['nom'] = $validated['numOfficiel'];
+        }
 
         foreach ($validated as $key => $value) {
             $salle->$key = $value;
