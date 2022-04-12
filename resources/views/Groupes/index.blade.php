@@ -7,7 +7,11 @@
                 <th scope="col">#</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Effectif</th>
-                <th scope="col" colspan="3">
+                <th scope="col">Debut</th>
+                <th scope="col">Fin</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">
                     <a href="#" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true"
                         data-toggle="modal" data-target="#ModalAdd">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -22,10 +26,12 @@
         </thead>
         <tbody>
             @foreach ($groupes as $groupe)
-                <tr>
+                <tr class="{{ $groupe->status() }}">
                     <td>{{ $groupe->id }}</td>
                     <td>{{ $groupe->nom }}</td>
                     <td>{{ $groupe->effectif }}</td>
+                    <td>{{ $groupe->formatDate('debut') }}</td>
+                    <td>{{ $groupe->formatDate('fin') }}</td>
                     <td>
                         <a href="#" class="btn btn-outline-success" tabindex="-1" role="button" aria-disabled="true"
                             data-toggle="modal" data-target="#ModalView{{ $groupe->id }}">

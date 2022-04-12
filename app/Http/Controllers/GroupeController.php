@@ -40,6 +40,8 @@ class GroupeController extends Controller
         $validated = $request->validate([
             'nom' => 'required|unique:groupes|max:255',
             'effectif' => 'required|max:255',
+            'debut' => "required|date",
+            'fin' => "date"
         ]);
         if (Groupe::create($validated)) {
             return redirect()->back()->withSuccess('Insertion ok');
@@ -82,6 +84,8 @@ class GroupeController extends Controller
         $validated = $request->validate([
             'nom' => 'required|max:255',
             'effectif' => 'required|max:255',
+            'debut' => "required|date",
+            'fin' => "date"
         ]);
 
         foreach ($validated as $key => $value) {

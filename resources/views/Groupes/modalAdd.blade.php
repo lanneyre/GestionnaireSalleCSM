@@ -20,6 +20,14 @@
                         <label for="effectif">Effectif max :</label>
                         <input type="number" class="form-control" id="effectif" value="" name="effectif">
                     </div>
+                    <div class="form-group">
+                        <label for="debut">Début formation :</label>
+                        <input type="date" class="form-control" id="debut" value="" name="debut">
+                    </div>
+                    <div class="form-group">
+                        <label for="fin">Fin formation :</label>
+                        <input type="date" class="form-control" id="fin" value="" name="fin">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

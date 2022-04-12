@@ -10,7 +10,9 @@
                 <th scope="col">Apprenants</th>
                 <th scope="col">Superficie</th>
                 <th scope="col">Etage</th>
-                <th scope="col" colspan="3">
+                <th scope="col">&nbsp;</th>
+                <th scope="col">&nbsp;</th>
+                <th scope="col">
                     <a href="#" class="btn btn-outline-primary" tabindex="-1" role="button" aria-disabled="true"
                         data-toggle="modal" data-target="#ModalAdd">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

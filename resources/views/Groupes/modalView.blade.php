@@ -13,7 +13,14 @@
                 <div class="row">
                     <div class="col-6">Effectif max :</div>
                     <div class="col-6">{{ $groupe->effectif }}</div>
-
+                </div>
+                <div class="row">
+                    <div class="col-6">Début :</div>
+                    <div class="col-6">{{ $groupe->formatDate('debut') }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-6">fin :</div>
+                    <div class="col-6">{{ $groupe->formatDate('fin') }}</div>
                 </div>
             </div>
             <div class="modal-footer">

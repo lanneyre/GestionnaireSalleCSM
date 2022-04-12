@@ -24,6 +24,16 @@
                         <input type="number" class="form-control" id="effectif{{ $groupe->id }}"
                             value="{{ $groupe->effectif }}" name="effectif">
                     </div>
+                    <div class="form-group">
+                        <label for="debut{{ $groupe->id }}">Debut formation :</label>
+                        <input type="date" class="form-control" id="debut{{ $groupe->id }}"
+                            value="{{ $groupe->debut }}" name="debut">
+                    </div>
+                    <div class="form-group">
+                        <label for="fin{{ $groupe->id }}">Fin formation :</label>
+                        <input type="date" class="form-control" id="fin{{ $groupe->id }}"
+                            value="{{ $groupe->fin }}" name="fin">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
