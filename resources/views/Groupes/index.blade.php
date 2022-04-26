@@ -79,6 +79,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script>
-        $('#sortTablegroupe').DataTable();
+        $('#sortTablegroupe').DataTable({
+            "paging": false
+        });
     </script>
 @endsection
