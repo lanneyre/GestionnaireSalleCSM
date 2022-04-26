@@ -96,3 +96,25 @@
     </script>
     <script src="js/main.js"></script>
 @endsection
+@section('formPDF')
+    <form action="{{ route('printPdf') }}" method="post" class="row" id="print">
+        @csrf
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Du</span>
+            </div>
+            <input type="date" class="form-control" name="dd"
+                value="{{ \date('Y-m-d', mktime(0, 0, 0, $m, 1, $year)) }}">
+        </div>
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Au</span>
+            </div>
+            <input type="date" class="form-control" name="df"
+                value="{{ \date('Y-m-d', mktime(0, 0, 0, $m, cal_days_in_month(CAL_GREGORIAN, $m, $year), $year)) }}">
+        </div>
+        <div class="input-group input-group-sm">
+            <button type="submit" class="btn btn-outline-light">Imprimer</button>
+        </div>
+    </form>
+@endsection

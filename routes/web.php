@@ -21,4 +21,5 @@ Route::resource('salle', SalleController::class);
 Route::resource('groupe', GroupeController::class);
 
 Route::get("savePlanning", [Controller::class, 'savePlanning']);
+Route::post("printPdf", [Controller::class, 'printPdf'])->name("printPdf");
 Route::get('/', [Controller::class, 'welcome']);

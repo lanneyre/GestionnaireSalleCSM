@@ -11,6 +11,8 @@ use App\Models\Planning;
 use App\Models\Salle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use PDF;
 
 class Controller extends BaseController
 {
@@ -33,6 +35,59 @@ class Controller extends BaseController
             $planning[$p->date][$p->id_groupe] = $p->id_salle;
         }
         return view("welcome", ["groupes" => $groupes, "salles" => $salles, "month" => self::month, "m" => $month, "year" => $year, "nbJour" => $colonne, "planning" => $planning]);
+    }
+
+    function printPdf(Request $request)
+    {
+        $validated = $request->validate([
+            'dd' => 'required|date',
+            'df' => 'required|date'
+        ]);
+        if (sizeof($validated) == 2) {
+            $groupes = Groupe::all();
+            $salles = Salle::all();
+            $salle = [];
+            foreach ($salles as $s) {
+                # code...
+                $salle[$s->id] = $s;
+            }
+
+            $start = new \dateTime($request['dd']);
+            $dateToWork = new \dateTime($request['dd']);
+            $dateToWork->modify("+6 days");
+
+            $end = new \dateTime($request['df']);
+            //echo $end->diff($start)->format('%r%a');
+            if ($end->diff($start)->format('%r%a') > 0) {
+                $end->setDate($start->format('Y'), $start->format('m'), $start->format('d'));
+            }
+            if ($end->diff($dateToWork)->format('%r%a') > 0) {
+                $dateToWork->setDate($end->format('Y'), $end->format('m'), $end->format('d'));
+            }
+            // $colonne = $start->diff($end)->format('%a');
+            $page = ceil($start->diff($end)->format('%a') / 7);
+            $page = $page == 0 ? 1 : $page;
+            $plannings = Planning::where("date", ">=", $start->format('Y-m-d'))->whereYear("date", "<=", $end->format('Y-m-d'))->get();
+
+            $planning = [];
+
+            foreach ($plannings as $p) {
+                # code...
+                $planning[$p->date][$p->id_groupe] = $p->id_salle;
+            }
+
+            PDF::setOptions([
+                "defaultFont" => "Courier",
+                "defaultPaperSize" => "a4",
+                "orientation" => "landscape"
+            ]);
+
+            // L'instance PDF avec la vue resources/views/posts/show.blade.php
+            $pdf = PDF::loadView('pdf', ["page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper('a4', 'landscape');
+            // Lancement du téléchargement du fichier PDF
+            return $pdf->stream("planning.pdf");
+        }
+        return Redirect::back()->withErrors('Echec export' . $start->diff($end)->format('%a'));
     }
 
     function savePlanning(Request $request)

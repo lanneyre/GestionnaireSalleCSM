@@ -4,6 +4,7 @@
             <div class="col-sm-8 col-md-7 py-4">
                 <h4 class="text-white">Gestionnaire de salle</h4>
                 <p class="text-muted">Ce site permet de gérer les salles de toutes les promos</p>
+                @yield("formPDF")
             </div>
             <div class="col-sm-4 offset-md-1 py-4">
                 <h4 class="text-white">Menu</h4>

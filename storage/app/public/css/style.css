@@ -44,3 +44,24 @@
     height: 30px;
     margin-right: 20px;
 }
+
+#print .input-group {
+    width: 30% !important;
+}
+
+.printpdf th,
+.printpdf td {
+    padding: 5px;
+}
+
+.printpdf tbody th {
+    text-align: left;
+}
+
+.printpdf tr:nth-child(even) {
+    background-color: gainsboro;
+}
+
+.printpdf tbody td {
+    text-align: center;
+}
