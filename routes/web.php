@@ -17,9 +17,12 @@ use App\Models\User;
 |
 */
 
-Route::resource('salle', SalleController::class);
-Route::resource('groupe', GroupeController::class);
+Route::middleware(['setAffichage'])->group(function () {
+    Route::resource('salle', SalleController::class);
+    Route::resource('groupe', GroupeController::class);
 
-Route::get("savePlanning", [Controller::class, 'savePlanning']);
-Route::post("printPdf", [Controller::class, 'printPdf'])->name("printPdf");
-Route::get('/', [Controller::class, 'welcome']);
+    Route::get("savePlanning", [Controller::class, 'savePlanning']);
+    Route::post("printPdf", [Controller::class, 'printPdf'])->name("printPdf");
+    Route::get("setAffichage", [Controller::class, 'setAffichage'])->name("setAffichage");
+    Route::get('/', [Controller::class, 'welcome']);
+});

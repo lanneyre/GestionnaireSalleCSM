@@ -34,7 +34,8 @@ class Controller extends BaseController
             # code...
             $planning[$p->date][$p->id_groupe] = $p->id_salle;
         }
-        return view("welcome", ["groupes" => $groupes, "salles" => $salles, "month" => self::month, "m" => $month, "year" => $year, "nbJour" => $colonne, "planning" => $planning]);
+        $affichage = session('affichage');
+        return view("welcome", ["affichage" => $affichage, "groupes" => $groupes, "salles" => $salles, "month" => self::month, "m" => $month, "year" => $year, "nbJour" => $colonne, "planning" => $planning]);
     }
 
     function printPdf(Request $request)
@@ -87,7 +88,7 @@ class Controller extends BaseController
             // Lancement du téléchargement du fichier PDF
             return $pdf->stream("planning.pdf");
         }
-        return Redirect::back()->withErrors('Echec export' . $start->diff($end)->format('%a'));
+        return Redirect::back()->withErrors('Echec export');
     }
 
     function savePlanning(Request $request)
@@ -107,5 +108,18 @@ class Controller extends BaseController
             $requestUpdate = "UPDATE `plannings` SET `id_salle` = :id_salle, `updated_at` = NOW() WHERE `plannings`.`id` = :id ";
             DB::update($requestUpdate, ["id" => $plan[0]->id, "id_salle" => $salle]);
         }
+    }
+
+    function setAffichage(Request $request)
+    {
+        if ($request->session()->has('affichage')) {
+            if (session('affichage') == "groupe") {
+                session(['affichage' => 'salle']);
+            } else if (session('affichage') == "salle") {
+                session(['affichage' => 'groupe']);
+            }
+        }
+
+        return Redirect::back();
     }
 }
