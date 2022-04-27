@@ -44,9 +44,9 @@ class Groupe extends Model
         $ddf = new \DateTime("$y-$m-$n");
         $dd = new \DateTime($this->debut);
         $df = new \DateTime($this->fin);
-        if ($ddo->diff($df)->format("%r%a") <= 0) {
+        if ($ddo->diff($df)->format("%r%a") < 0) {
             return "table-secondary";
-        } else if ($ddf->diff($dd)->format("%r%a") >= 0) {
+        } else if ($ddf->diff($dd)->format("%r%a") > 0) {
             return "table-warning";
         } else {
             return "table-light";
