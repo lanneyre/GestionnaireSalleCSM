@@ -82,9 +82,9 @@ class Controller extends BaseController
                 "defaultPaperSize" => "a4",
                 "orientation" => "landscape"
             ]);
-
+            $affichage = session('affichage');
             // L'instance PDF avec la vue resources/views/posts/show.blade.php
-            $pdf = PDF::loadView('pdf', ["page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper('a4', 'landscape');
+            $pdf = PDF::loadView('pdf', ["affichage" => $affichage, "page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper('a4', 'landscape');
             // Lancement du téléchargement du fichier PDF
             return $pdf->stream("planning.pdf");
         }
