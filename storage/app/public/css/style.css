@@ -85,7 +85,7 @@ main {
 
 .main {
     height: calc(100% - 48px);
-    overflow: auto;
+    overflow: visible;
 }
 
 
