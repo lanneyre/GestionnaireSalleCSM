@@ -98,7 +98,7 @@ main {
 
 .printpdf.onepage thead th div {
     position: absolute;
-    left: -20px;
+    left: -30px;
     margin: 0;
     transform: rotate(-75deg);
     width: 120px;
