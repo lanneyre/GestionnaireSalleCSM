@@ -1,5 +1,5 @@
 <section class="row">
-    <div class="col-2 d-flex flex-column">
+    <div class="col-2 d-flex flex-column main">
         <div class="col-12 mb-2 p-1">&nbsp;</div>
         @foreach ($groupes as $groupe)
             @if ($groupe->status($m, $year) == 'table-light')
@@ -7,7 +7,7 @@
             @endif
         @endforeach
     </div>
-    <div class="col-10 overflow-auto">
+    <div class="col-10 overflow-auto main">
         <div class="row d-flex flex-nowrap">
             @for ($i = 1; $i <= $nbJour; $i++)
                 <div class="col m-0 p-0 d-flex flex-column flex-nowrap colonneJour">
