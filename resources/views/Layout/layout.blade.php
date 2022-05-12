@@ -29,7 +29,6 @@
 <body>
     <header>
         @include('Layout.menu')
-
     </header>
 
     <main class="p-2">

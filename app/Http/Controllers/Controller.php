@@ -65,6 +65,7 @@ class Controller extends BaseController
             if ($end->diff($dateToWork)->format('%r%a') > 0) {
                 $dateToWork->setDate($end->format('Y'), $end->format('m'), $end->format('d'));
             }
+            //dd($end, $dateToWork);
             // $colonne = $start->diff($end)->format('%a');
             $page = ceil($start->diff($end)->format('%a') / 7);
             $page = $page == 0 ? 1 : $page;
@@ -79,14 +80,24 @@ class Controller extends BaseController
 
             PDF::setOptions([
                 "defaultFont" => "Courier",
-                "defaultPaperSize" => "a4",
-                "orientation" => "landscape"
+                "orientation" => "landscape",
+                "dpi" => 130
             ]);
+            //dd($plannings);
             $affichage = session('affichage');
             // L'instance PDF avec la vue resources/views/posts/show.blade.php
-            $pdf = PDF::loadView('pdf', ["affichage" => $affichage, "page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper('a4', 'landscape');
+            $vue = "affichage.pdf";
+            $sizepaper = "a4";
+            if ($affichage == "salle") {
+                $vue .= "Salle";
+            } else {
+                $vue .= "Groupe";
+            }
+            $vue .= $request->OnePage;
+            $pdf = PDF::loadView('pdf', ["vue" => $vue, "page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper($sizepaper, 'landscape');
             // Lancement du téléchargement du fichier PDF
-            return $pdf->stream("planning.pdf");
+            //return $pdf->stream();
+            return $pdf->download("planning.pdf");
         }
         return Redirect::back()->withErrors('Echec export');
     }

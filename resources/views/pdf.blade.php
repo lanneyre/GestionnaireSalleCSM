@@ -1,11 +1,7 @@
 @extends("Layout.layoutPDF")
 
 @section('main')
-    @if ($affichage == 'salle')
-        @include('affichage.pdfSalle')
-    @else
-        @include('affichage.pdfGroupe')
-    @endif
+    @include($vue)
 @endsection
 @section('script')
     <script src="js/main.js"></script>

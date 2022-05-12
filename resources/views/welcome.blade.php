@@ -49,8 +49,7 @@
     </form>
 @endsection
 @section('script')
-    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
-    </script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="js/main.js"></script>
     @if ($affichage == 'salle')
         <script src="js/mainSalle.js"></script>
@@ -77,6 +76,10 @@
         </div>
         <div class="input-group input-group-sm">
             <button type="submit" class="btn btn-outline-light">Imprimer</button>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="onePage" name="OnePage" value="OnePage">
+            <label class="form-check-label text-white" for="onePage">One Page</label>
         </div>
     </form>
 @endsection

@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <main class="p-2">
+    <main class="p-2" id="pdf">
 
         @yield("main")
 
