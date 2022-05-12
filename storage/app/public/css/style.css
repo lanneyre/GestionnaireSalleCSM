@@ -58,6 +58,7 @@
 .printpdf th,
 .printpdf td {
     /* padding: 5px; */
+    font-size: 0.8em;
 }
 
 .printpdf tbody th {
