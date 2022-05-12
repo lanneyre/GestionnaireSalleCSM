@@ -1,4 +1,4 @@
-<section class="row main">
+<section class="row">
     <div class="col-2 d-flex flex-column">
         <div class="col-12 mb-2 p-1">&nbsp;</div>
         @foreach ($groupes as $groupe)

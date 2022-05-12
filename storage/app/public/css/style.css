@@ -74,21 +74,6 @@
     text-align: center;
 }
 
-html,
-body {
-    height: 100%;
-}
-
-main {
-    height: calc(100% - 48px);
-}
-
-.main {
-    height: 500px;
-    overflow: visible;
-}
-
-
 .printpdf.onepage thead th {
     position: relative;
     height: 50px;
