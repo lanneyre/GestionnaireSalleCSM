@@ -55,10 +55,11 @@
     width: 20% !important;
 }
 
-.printpdf th,
-.printpdf td {
+.printpdf.onepage th,
+.printpdf.onepage td {
     /* padding: 5px; */
     font-size: 0.8em;
+    padding: 0;
 }
 
 .printpdf tbody th {
