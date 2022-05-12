@@ -79,9 +79,13 @@ body {
     height: 100%;
 }
 
-main,
+main {
+    height: calc(100% - 48px);
+}
+
 .main {
     height: calc(100% - 48px);
+    overflow: auto;
 }
 
 
