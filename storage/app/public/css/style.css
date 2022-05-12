@@ -85,7 +85,7 @@ main {
 .printpdf.onepage thead th {
     position: relative;
     height: 50px;
-    width: 20px;
+    width: 15px;
 }
 
 .printpdf.onepage thead th:last-child,
