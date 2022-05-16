@@ -22,8 +22,10 @@ class Controller extends BaseController
 
     function welcome(Request $request)
     {
-        $groupes = Groupe::all();
-        $salles = Salle::all();
+        $triGroupe = session("triGroupe");
+        $triSalle = session("triSalle");
+        $groupes = Groupe::all()->sortBy($triGroupe);
+        $salles = Salle::all()->sortBy($triSalle);
         $month = !empty($request['month']) ? $request['month'] : \date("n");
         //$nameMonth = self::month[$month - 1];
         $year = !empty($request['year']) ? $request['year'] : \date("Y");
@@ -35,7 +37,14 @@ class Controller extends BaseController
             $planning[$p->date][$p->id_groupe] = $p->id_salle;
         }
         $affichage = session('affichage');
-        return view("welcome", ["affichage" => $affichage, "groupes" => $groupes, "salles" => $salles, "month" => self::month, "m" => $month, "year" => $year, "nbJour" => $colonne, "planning" => $planning]);
+        if ($affichage == "salle") {
+            $tri = $triSalle;
+        } else {
+            $tri = $triGroupe;
+        }
+
+        //dd($tri);
+        return view("welcome", ["tri" => $tri, "affichage" => $affichage, "groupes" => $groupes, "salles" => $salles, "month" => self::month, "m" => $month, "year" => $year, "nbJour" => $colonne, "planning" => $planning]);
     }
 
     function printPdf(Request $request)
@@ -45,8 +54,10 @@ class Controller extends BaseController
             'df' => 'required|date'
         ]);
         if (sizeof($validated) == 2) {
-            $groupes = Groupe::all();
-            $salles = Salle::all();
+            $triGroupe = session("triGroupe");
+            $triSalle = session("triSalle");
+            $groupes = Groupe::all()->sortBy($triGroupe);
+            $salles = Salle::all()->sortBy($triSalle);
             $salle = [];
             foreach ($salles as $s) {
                 # code...
@@ -130,6 +141,17 @@ class Controller extends BaseController
                 session(['affichage' => 'groupe']);
             }
         }
+
+        return Redirect::back();
+    }
+    function setTri(Request $request)
+    {
+        if (session("affichage") == "salle") {
+            session(['triSalle' => $request->orderBy]);
+        } else {
+            session(['triGroupe' => $request->orderBy]);
+        }
+        // dd(session('triGroupe'));
 
         return Redirect::back();
     }

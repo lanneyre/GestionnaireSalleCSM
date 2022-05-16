@@ -1,11 +1,28 @@
-@extends("Layout.layout")
+@extends('Layout.layout')
 
 @section('main')
     <header class="row">
         <section class="col-2">
-            Affichage : <br>
-            <a href="{{ route('setAffichage') }}"> {{ ucfirst($affichage) }} </a> &darr;
-
+            Affichage :
+            <a href="{{ route('setAffichage') }}"> {{ ucfirst($affichage) }} </a> &darr; <br>
+            <form action="{{ route('setTri') }}" method="GET" id="orderByForm">
+                <label for="orderBy">Trier par : </label>
+                <select name="orderBy" id="orderBy">
+                    @if ($affichage == 'salle')
+                        <option value="numOfficiel" @if ($tri == 'numOfficiel') selected @endif>Numéro</option>
+                        <option value="nom" @if ($tri == 'nom') selected @endif>Nom</option>
+                        <option value="superficie" @if ($tri == 'superficie') selected @endif>Superficie</option>
+                        <option value="nbMaxApprenants" @if ($tri == 'nbMaxApprenants') selected @endif>NB Apprenants
+                        </option>
+                        <option value="etage" @if ($tri == 'etage') selected @endif>Etage</option>
+                    @else
+                        <option value="nom" @if ($tri == 'nom') selected @endif>Nom</option>
+                        <option value="effectif" @if ($tri == 'effectif') selected @endif>Effectif</option>
+                        <option value="debut" @if ($tri == 'debut') selected @endif>Début</option>
+                        <option value="fin" @if ($tri == 'fin') selected @endif>Fin</option>
+                    @endif
+                </select>
+            </form>
         </section>
         <section class="col-10">
             <div class="row justify-content-around">

@@ -19,6 +19,12 @@ class setAffichage
         if ($request->session()->missing('affichage')) {
             session(['affichage' => 'groupe']);
         }
+        if ($request->session()->missing('triGroupe')) {
+            session(['triGroupe' => 'nom']);
+        }
+        if ($request->session()->missing('triSalle')) {
+            session(['triSalle' => 'numOfficiel']);
+        }
         return $next($request);
     }
 }

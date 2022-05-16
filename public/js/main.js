@@ -88,3 +88,6 @@ const getSalles = (date) => {
 
 var salles = document.querySelectorAll(".salles");
 
+document.querySelector("#orderBy").addEventListener("change", function () {
+    document.querySelector("#orderByForm").submit();
+});

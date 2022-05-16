@@ -24,5 +24,6 @@ Route::middleware(['setAffichage'])->group(function () {
     Route::get("savePlanning", [Controller::class, 'savePlanning']);
     Route::post("printPdf", [Controller::class, 'printPdf'])->name("printPdf");
     Route::get("setAffichage", [Controller::class, 'setAffichage'])->name("setAffichage");
+    Route::get("setTri", [Controller::class, 'setTri'])->name("setTri");
     Route::get('/', [Controller::class, 'welcome']);
 });
