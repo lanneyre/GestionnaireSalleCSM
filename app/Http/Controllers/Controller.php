@@ -56,7 +56,6 @@ class Controller extends BaseController
         if (sizeof($validated) == 2) {
             $triGroupe = session("triGroupe");
             $triSalle = session("triSalle");
-            $groupes = Groupe::all()->sortBy($triGroupe);
             $salles = Salle::all()->sortBy($triSalle);
             $salle = [];
             foreach ($salles as $s) {
@@ -101,8 +100,14 @@ class Controller extends BaseController
             $sizepaper = "a4";
             if ($affichage == "salle") {
                 $vue .= "Salle";
+                $gpr = Groupe::all()->sortBy($triGroupe);
+                $groupes = [];
+                foreach ($gpr as $g) {
+                    $groupes[$g->id] = $g;
+                }
             } else {
                 $vue .= "Groupe";
+                $groupes = Groupe::all()->sortBy($triGroupe);
             }
             $vue .= $request->OnePage;
             $pdf = PDF::loadView('pdf', ["vue" => $vue, "page" => $page, "dateToWork" => $dateToWork, "groupes" => $groupes, "salles" => $salle, "month" => self::month, "start" => $start, "end" => $end, "planning" => $planning])->setPaper($sizepaper, 'landscape');
@@ -151,7 +156,7 @@ class Controller extends BaseController
         } else {
             session(['triGroupe' => $request->orderBy]);
         }
-        // dd(session('triGroupe'));
+        dd(session('triGroupe'));
 
         return Redirect::back();
     }

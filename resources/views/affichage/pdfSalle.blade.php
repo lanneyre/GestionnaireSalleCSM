@@ -44,7 +44,7 @@
                                                 $g = array_search($salle->id, $planning[$start->format('Y-m-d')]);
                                             @endphp
                                             @if ($g !== false)
-                                                {{ $salles[$planning[$start->format('Y-m-d')][$g]]->numOfficiel }}
+                                                {{ $groupes[$g]->nom }}
                                             @else
                                                 &nbsp;
                                             @endif
